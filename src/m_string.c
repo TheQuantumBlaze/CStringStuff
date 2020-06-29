@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "m_string.h"
 #include <stdbool.h>
+#include <string.h>
 
 string_t* string_t_create_s(const char* str, size_t size)
 {
@@ -30,10 +31,7 @@ void string_t_copy(string_t* a, string_t* b)
 {
 	a->string = (char*)realloc(a->string,b->size);
 	a->size = b->size;
-	for(int i = 0; i < string_t_length(b); i++)
-	{
-		a->string[i] = b->string[i];
-	}
+	memcpy(a->string,b->string,b->size);
 }
 
 string_t* string_t_makecopy(string_t* s)
