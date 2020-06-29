@@ -68,3 +68,21 @@ string_t* string_t_create(const char* s)
 	return string_t_create_s(s, charCounter * sizeof(char));
 }
 
+void string_t_reverse(string_t* s)
+{
+	//printf("We are reversing");
+	int length = string_t_length(s);
+
+	for(int i = 0; i < length-2; i++)
+	{
+		int invert = length-2-i;
+		if(i == invert || i > invert)
+		{
+			break;
+		}
+		char a = s->string[i];
+		s->string[i] = s->string[invert];
+		s->string[invert] = a;
+	}
+	//printf("%s", s->string);
+}

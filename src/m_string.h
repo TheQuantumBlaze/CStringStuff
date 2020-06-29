@@ -14,5 +14,5 @@ void string_t_copy(string_t*, string_t*);
 string_t* string_t_makecopy(string_t*);
 const char* string_t_getstring(string_t*);
 string_t* string_t_create(const char*);
-
+void string_t_reverse(string_t*);
 #endif

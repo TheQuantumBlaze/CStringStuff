@@ -5,6 +5,7 @@
 int main()
 {
 	string_t* string = string_t_create("Hello World\0");
+	string_t_reverse(string);
 
 	printf("%s", string_t_getstring(string));
 
