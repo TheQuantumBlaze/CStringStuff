@@ -20,6 +20,7 @@ string_t* string_t_create_s(const char* str, size_t size)
 void string_t_free(string_t* p)
 {
 	free(p->string);
+	free(p);
 }
 
 int string_t_length(string_t* s)
@@ -83,4 +84,43 @@ void string_t_reverse(string_t* s)
 		s->string[invert] = a;
 	}
 	//printf("%s", s->string);
+}
+
+bool string_t_equals(string_t* a, string_t* b)
+{
+	if(a->size != b->size)
+		return false;
+
+	for(int i = 0; i < string_t_length(a); i++)
+	{
+		if(a->string[i] != b->string[i])
+		{
+			return false;
+		}
+	}
+
+	return true;
+}
+
+void string_t_edit(string_t* s, const char* b)
+{
+	string_t* nstring = string_t_create(b);
+	string_t_copy(s,nstring);
+	string_t_free(nstring);
+}
+
+void string_t_concat(string_t* a, string_t* b)
+{
+	char* temp = (char*)malloc(a->size + b->size - 1);
+	memcpy(temp, a->string, a->size - 1 * sizeof(char));
+	memcpy(temp + (a->size - 1), b->string, b->size);
+	string_t_edit(a,temp);
+	free(temp);
+}
+
+void string_t_addconcat(string_t* a, const char* b)
+{
+	string_t* temp = string_t_create(b);
+	string_t_concat(a,temp);
+	string_t_free(temp);
 }

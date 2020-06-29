@@ -16,10 +16,13 @@ int main()
 
 	printf("second string coppied to first: %s\n",string_t_getstring(string));
 
+	if(string_t_equals(string, string2))
+	{
+		printf("The two strings are the same\n");
+	}
+
 	string_t_free(string);
 	string_t_free(string2);
 
-	free(string);
-	free(string2);
 	return 0;
 }
